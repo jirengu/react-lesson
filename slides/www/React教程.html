@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>React教程</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab, jirengu">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="css/zenburn.css">
+
+		<!--[if lt IE 9]>
+		<script src="js/lib/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			<section>
+<h1>React &#x7B80;&#x660E;&#x6559;&#x7A0B;</h1>
+<h6>by <a href="http://jirengu.com">jirengu.com</a></h6>
+</section>
+<section>
+<section>
+<h2>&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x642D;&#x5EFA;</h2>
+</section>
+<section>
+<h2>&#x521D;&#x59CB;&#x5316;</h2>
+<pre><code>mkdir react-project
+cd react-project
+npm init
+</code></pre>
+</section>
+<section>
+<h2>&#x5B89;&#x88C5;react</h2>
+<pre><code>npm install react react-dom --save
+</code></pre>
+</section>
+<section>
+<h2>&#x5B89;&#x88C5;babel</h2>
+<pre><code>npm install babel-loader babel-core babel-preset-es2015 babel-preset-react --save
+</code></pre>
+</section>
+<section>
+<h2>&#x5B89;&#x88C5;webpack server</h2>
+<pre><code>npm install babel webpack webpack-dev-server -g
+</code></pre>
+</section>
+<section>
+<h2>&#x521B;&#x5EFA;&#x6587;&#x4EF6;</h2>
+<pre><code>touch index.html app.js main.js webpack.config.js
+</code></pre>
+</section>
+<section>
+<p>webpack.config.js</p>
+<pre><code>module.exports = {
+  entry: &apos;./main.js&apos;,
+  output: {
+    path: &apos;./&apos;,
+    filename: &apos;index.js&apos;
+  },
+  devServer: {
+    inline: true,
+    port: 8888
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: &apos;babel&apos;,
+        query: {
+          presets: [&apos;es2015&apos;,&apos;react&apos;]
+        }
+      }
+    ]
+  }
+}
+</code></pre>
+</section>
+<section>
+<p>index.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;react&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
+  &lt;script src=&quot;index.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</section>
+<section>
+<p>app.js</p>
+<pre><code>import React from &apos;react&apos;;
+class	App extends React.Component {
+  render(){
+    return &lt;div&gt;hello world&lt;/div&gt;
+  }
+}
+export default App;
+</code></pre>
+</section>
+<section>
+<p>main.js</p>
+<pre><code>import React from &apos;react&apos;;
+import ReactDom from &apos;react-dom&apos;;
+import App from &apos;./app&apos;;
+
+ReactDom.render(&lt;App /&gt;, document.querySelector(&apos;#app&apos;))
+</code></pre>
+</section>
+<section>
+<p>package.json</p>
+<pre><code>{
+  &quot;name&quot;: &quot;react-project&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;webpack-dev-server&quot;
+  },
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;dependencies&quot;: {
+    &quot;react&quot;: &quot;^15.3.2&quot;,
+    &quot;react-dom&quot;: &quot;^15.3.2&quot;
+  }
+}
+</code></pre>
+</section>
+<section>
+<h2>&#x542F;&#x52A8;</h2>
+<pre><code>npm start
+</code></pre>
+<ul>
+<li>&#x6253;&#x5F00; <a href="http://localhost:8888/index.html">http://localhost:8888/index.html</a></li>
+<li>&#x4FEE;&#x6539;app.js,&#x9875;&#x9762;&#x81EA;&#x52A8;&#x5237;&#x65B0;</li>
+</ul>
+</section>
+</section>
+<section>
+<section>
+<h2>hello world</h2>
+</section>
+<section>
+<p>&#x4FEE;&#x6539; app.js</p>
+<pre><code>import React from &apos;react&apos;;
+// class  App extends React.Component {
+//  render(){
+//    return &lt;div&gt;hello world&lt;/div&gt;
+//  }
+// }
+
+// const App = function(){
+//   return &lt;h1&gt; hello jiredngus&lt;/h1&gt; ;
+// }
+const App = () =&gt; &lt;h1&gt;hello ruoyu &lt;/h1&gt;
+export default App;
+
+</code></pre>
+</section>
+</section>
+<section>
+<section>
+<h2>&#x6E32;&#x67D3;&#x591A;&#x4E2A;&#x6807;&#x7B7E;</h2>
+</section>
+<section>
+<p>&#x53EF;&#x4EE5;&#x8FD9;&#x6837;</p>
+<pre><code>import React from &apos;react&apos;;
+class  App extends React.Component {
+ render(){
+    return &lt;div&gt;
+        &lt;div&gt; hello world&lt;/div&gt;
+        &lt;h3&gt; hello jirengu &lt;/h3&gt;
+      &lt;/div&gt;
+ }
+}
+
+export default App;
+</code></pre>
+</section>
+<section>
+<p>&#x6216;&#x8005;</p>
+<pre><code>import React from &apos;react&apos;;
+class  App extends React.Component {
+ render(){
+    return &lt;div&gt;
+        &lt;div&gt; hello world&lt;/div&gt;
+        &lt;h3&gt; hello jirengu &lt;/h3&gt;
+      &lt;/div&gt;
+ }
+}
+export default App;
+
+</code></pre>
+</section>
+<section>
+<p>&#x6216;&#x8005;&#x66F4;&#x7B80;&#x5355;&#x7684;&#x5199;&#x6CD5;</p>
+<pre><code>import React from &apos;react&apos;;
+
+const App = () =&gt; (
+  &lt;div&gt;
+    &lt;h1&gt;hello ruoyud &lt;/h1&gt;
+    &lt;h3&gt; hello jirengu &lt;/h3&gt;
+  &lt;/div&gt;
+)
+export default App;
+</code></pre>
+</section>
+</section>
+<section>
+<section>
+<h2>&#x4F7F;&#x7528;&#x5C5E;&#x6027;</h2>
+</section>
+<section>
+<ul>
+<li>app.js</li>
+</ul>
+<pre><code>class  App extends React.Component {
+ render(){
+    let username = this.props.username
+    return (
+      &lt;div&gt;
+        &lt;div&gt; hello world&lt;/div&gt;
+        &lt;h3&gt; hello {username} &lt;/h3&gt;
+      &lt;/div&gt;
+      )
+ }
+}
+
+</code></pre>
+<ul>
+<li>main.js</li>
+</ul>
+<pre><code>ReactDom.render(&lt;App username=&quot;ruoyu&quot;/&gt;, document.querySelector(&apos;#app&apos;))
+</code></pre>
+</section>
+<section>
+<p>&#x8BBE;&#x7F6E;&#x5C5E;&#x6027;&#x7C7B;&#x578B;&#x4E0E;&#x9ED8;&#x8BA4;&#x503C;</p>
+<pre><code>class  App extends React.Component {
+ render(){
+    let username = this.props.username
+    let age = this.props.age
+    return (
+      &lt;div&gt;
+        &lt;h3&gt; {username} &lt;/h3&gt;
+        &lt;p&gt; age is: {age} &lt;/p&gt;
+      &lt;/div&gt;
+      )
+ }
+}
+
+App.propTypes = {
+  username: React.PropTypes.string,
+  age: React.PropTypes.number.isRequired
+}
+
+App.defaultProps = {
+  username: &apos;jirengu&apos;,
+  age: 2
+}
+</code></pre>
+<pre><code>ReactDom.render(&lt;App  age={5}/&gt;, document.querySelector(&apos;#app&apos;))
+</code></pre>
+</section>
+</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="js/lib/head.min.js"></script>
+		<script src="js/lib/reveal.js"></script>
+		<script src="js/lib/classList.js"></script>
+		<script src="js/plugin/highlight/highlight.js"></script>
+		<script src="js/plugin/zoom-js/zoom.js"></script>
+		<script src="js/plugin/notes/notes.js"></script>
+
+		<script>
+			
+		</script>
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+				transition: 'slide' // none/fade/slide/convex/concave/zoom
+			});
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+			    var currentSlide = event.currentSlide;
+			    runScript(currentSlide);
+
+			} );
+			hljs.initHighlightingOnLoad();
+
+			function runScript(section){
+				var scriptStr = section.getAttribute('data-script');
+				if(scriptStr){
+					scriptStr = decodeURIComponent(scriptStr);
+					var tag = document.createElement('script');
+					tag.innerHTML = scriptStr;
+					document.head.appendChild(tag);
+				}
+
+			}
+		</script>
+
+	</body>
+</html>
